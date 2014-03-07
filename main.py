@@ -7,14 +7,23 @@ No grid world simulation done. Taken as points.
 
 def init(laneNum, spawnRateSpec = None):
 	"""
-	Ini
+	Initialize lanes and spawning points
 	"""
 
 def step():
+	"""
+	One step of the simulator
+	"""
 
 def log():
+	"""
+	Save necessary data to output
+	"""
 
 def main():
+	"""
+	Main function of the simulator
+	"""
 	init()
 
 	t = 0
