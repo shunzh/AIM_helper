@@ -11,6 +11,10 @@ class Vehicle:
 		self.laneId = laneId
 		self.vId = vId
 
+		# policy-related
+		self.admitted = False
+
+		# position-related
 		self.disToEntry = LANE_LENGTH
 		self.v = DEFAULT_V
 		# set no acceleration by default

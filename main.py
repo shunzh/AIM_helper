@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import intersection, policy
 
 """
 Main file for intersection simulator.
@@ -13,6 +14,8 @@ def init(laneNum, spawnRateSpec = None):
 def step():
 	"""
 	One step of the simulator
+
+	Usually called linearly, possibly called recursively (trying each possibility)
 	"""
 
 def log():
@@ -25,9 +28,13 @@ def main():
 	Main function of the simulator
 	"""
 	init()
+	policy = Policy.Optimal
 
 	t = 0
 	while t < MAX_TIME:
+		# let policy modify reservation status
+		policy.step()
+		# let vehicles move
 		step()
 
 	log()
