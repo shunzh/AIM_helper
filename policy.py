@@ -2,6 +2,8 @@
 import random
 
 class Policy:
+	def step(self):
+		pass
 
 class FCFSBatch(Policy):
 
