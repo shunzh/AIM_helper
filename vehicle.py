@@ -1,8 +1,7 @@
 #!/usr/bin/env python
+import profile, lane
 
 class Vehicle:
-	# mile
-	LANE_LENGTH = 0.1
 	# mile per hour (mph)
 	DEFAULT_V = 35
 
@@ -23,7 +22,7 @@ class Vehicle:
 		# brake set to false by default. Otherwise, need to brake before disToEntry == 0
 		self.brake = False
 
-		self.dec = DecelerationModel()
+		self.profile = Profile.SimpleProfile()
 
 	def move(self, interv):
 		"""
@@ -39,16 +38,8 @@ class Vehicle:
 	def admit(self):
 		self.admitted = True
 
-
-class DecelerationModel:
-	DEC_LENGTH = 0.02
-
-	def getAcc(self, dis, v):
+	def collide(self, veh):
 		"""
-		a * t^2 / 2 = dis
+		Check whether this vehicle will collide with vehicle veh
 		"""
-		if dis > DEC_LENGTH:
-			return 0
-		else:
-			#TODO make sure
-			return - 0.1 * dis / (v * v)
+		#TODO

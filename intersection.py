@@ -2,6 +2,9 @@
 import random
 
 class Lane:
+	# mile
+    LANE_LENGTH = 0.1
+
 	def __init__(self, laneId, spawnRate):
 		"""
 		spawnRate is vehicles/second
@@ -18,5 +21,5 @@ class Lane:
 		interv is in seconds.
 		"""
 		# Follow Poission Distribution
-		if random.random() < spawnRate:
+		if random.random() < spawnRate * interv:
 			self.vehicles.append(Vehicle())

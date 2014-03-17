@@ -6,11 +6,12 @@ class IntersectionManager:
 	Main file for intersection simulator.
 	No grid world simulation done. Taken as points.
 	"""
-	def init(laneNum, spawnRateSpec):
+	def __init__(self, laneNum, spawnRateSpec, policy):
 		"""
 		Initialize lanes and spawning points
 		"""
-		lanes = [Lane(i, spawnRateSpec[i]) for i in range(0, laneNum)]
+		self.lanes = [Lane(i, spawnRateSpec[i]) for i in range(0, laneNum)]
+		self.policy = policy
 
 	def step(intv):
 		"""
@@ -33,18 +34,22 @@ class IntersectionManager:
 		"""
 		Main function of the simulator
 		"""
-		init()
-		policy = Policy.Optimal
-
 		t = 0
+
+		intv = 0.1
 		while t < MAX_TIME:
 			# let policy modify reservation status
-			policy.step()
+			self.policy.step(self.lanes)
 			# let vehicles move
 			step(intv)
+
+			t += intv
 
 		log()
 
 if __name__ == "__main__":
-	im = IntersectionManager()
+	laneNum = 12
+	spawnRateSpec = [.1] * laneNum
+
+	im = IntersectionManager(laneNum, spawnRateSpec, Policy.Optimal())
 	im.main()
