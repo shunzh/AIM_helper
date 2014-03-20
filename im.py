@@ -1,7 +1,11 @@
 #!/usr/bin/env python
-import intersection, policy
+import policy
+
+from intersection import Lane
 
 class IntersectionManager:
+	MAX_TIME = 1000
+
 	"""
 	Main file for intersection simulator.
 	No grid world simulation done. Taken as points.
@@ -13,7 +17,7 @@ class IntersectionManager:
 		self.lanes = [Lane(i, spawnRateSpec[i]) for i in range(0, laneNum)]
 		self.policy = policy
 
-	def step(intv):
+	def step(self, intv):
 		"""
 		One step of the simulator
 
@@ -24,20 +28,20 @@ class IntersectionManager:
 			for v in lane:
 				v.move()
 
-	def log():
+	def log(self):
 		"""
 		Save necessary data to output
 		"""
 		print "log here."
 
-	def main():
+	def main(self):
 		"""
 		Main function of the simulator
 		"""
 		t = 0
 
 		intv = 0.1
-		while t < MAX_TIME:
+		while t < self.MAX_TIME:
 			# let policy modify reservation status
 			self.policy.step(self.lanes)
 			# let vehicles move
@@ -51,5 +55,5 @@ if __name__ == "__main__":
 	laneNum = 12
 	spawnRateSpec = [.1] * laneNum
 
-	im = IntersectionManager(laneNum, spawnRateSpec, Policy.Optimal())
+	im = IntersectionManager(laneNum, spawnRateSpec, policy.Optimal())
 	im.main()

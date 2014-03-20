@@ -38,6 +38,9 @@ class Vehicle:
 	def admit(self):
 		self.admitted = True
 
+	def reject(self):
+		self.admitted = False
+
 	def collide(self, veh):
 		"""
 		Check whether this vehicle will collide with vehicle veh

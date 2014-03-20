@@ -3,7 +3,7 @@ import random
 
 class Lane:
 	# mile
-    LANE_LENGTH = 0.1
+	LANE_LENGTH = 0.1
 
 	def __init__(self, laneId, spawnRate):
 		"""
@@ -11,6 +11,7 @@ class Lane:
 		"""
 		self.laneId = laneId
 		self.spawnRate = spawnRate
+		self.counter = 0
 
 		# array that keeps the vehicles in this lane
 		self.vehicles = []
@@ -22,4 +23,10 @@ class Lane:
 		"""
 		# Follow Poission Distribution
 		if random.random() < spawnRate * interv:
-			self.vehicles.append(Vehicle())
+			vId = self.lane
+			self.vehicles.append(Vehicle(self.laneId))
+	
+	def step(self, interv):
+		spawn(intv) # spawn according to the interval
+		for v in self.vehicles:
+			v.move()
